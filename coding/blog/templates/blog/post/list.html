@@ -1,20 +1,21 @@
+
 {% extends "blog/base.html" %}
 
 {% block title %}My Blog Page{% endblock %}
+<h1>My Blog Page for Best practice</h1>
+<hr>  <div id="content">
+    {% block content %}
 
-{% block content %}
-    <h1>My Blog Page</h1>
-    {% for post in posts %}
-    
-     <h2>
-        <a href="{% url 'blog:post_detail' post.id %}">
-            {{ post.title }}
-        </a>
-      </h2>
-    <p class="date">
+ {% for post in posts %}
+  <h2>
+        {{ post.title }}
+    </h2>
+ <p class="date">
         Published {{ post.publish }} by {{ post.author }}
     </p>
-    {{ post.body|truncatewords:30|linebreaks }}
-
+{{ post.body|truncatewords:30|linebreaks }}
+    
     {% endfor %}
-{% endblock %}
+
+    {% endblock %}
+</div>

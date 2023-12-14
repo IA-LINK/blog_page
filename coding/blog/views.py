@@ -5,9 +5,10 @@ from .models import Post
 
 def post_list(request):
     posts = Post.published.all()
+    context = {'posts': posts}
     return render(request,
                   'blog/post/list.html',
-                  {'posts': posts})
+                  context)
 
 
 def post_detail(request, id):
@@ -17,4 +18,4 @@ def post_detail(request, id):
     
     return render(request,
                   'blog/post/detail.html',
-                  {'post': post})
+                  {'posts': post})
