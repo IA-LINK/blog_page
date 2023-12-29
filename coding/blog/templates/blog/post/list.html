@@ -2,20 +2,23 @@
 {% extends "blog/base.html" %}
 
 {% block title %}My Blog Page{% endblock %}
-<h1>My Blog Page for Best practice</h1>
-<hr>  <div id="content">
-    {% block content %}
 
- {% for post in posts %}
-  <h2>
-        {{ post.title }}
+{% block content %}
+    <h1>My Blog Page for Best practice</h1><hr>
+
+{% for post in posts %}
+    <h2>
+    <a href="{{ post.get_absolute_url }}">
+         {{ post.title }}   
+    </a>      
     </h2>
- <p class="date">
+    <p class="date">
         Published {{ post.publish }} by {{ post.author }}
     </p>
 {{ post.body|truncatewords:30|linebreaks }}
     
-    {% endfor %}
+   {% endfor %}
 
-    {% endblock %}
-</div>
+   {% include "page/pagination.html" with page=page_obj %}
+
+{% endblock %}
